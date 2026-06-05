@@ -115,7 +115,7 @@ export function BIFeatures() {
         transition={{ duration: 0.5 }}
         className="mb-10"
       >
-        <SectionLabel label="Pillar B — BI Genius AI" color="text-[#4cd7f6]" />
+        <SectionLabel label="Pillar B — Swift AI Ask" color="text-[#4cd7f6]" />
         <h2 className="text-[clamp(24px,3.5vw,38px)] font-extrabold tracking-tight mb-2">
           Next-Gen AI Enablement Platform
         </h2>

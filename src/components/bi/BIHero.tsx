@@ -27,7 +27,7 @@ export function BIHero() {
           transition={{ duration: 0.5 }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8 text-xs font-mono tracking-widest uppercase text-[#8c909f] border border-white/10 bg-white/[0.03]"
         >
-          Enterprise BI Portal · BI Genius AI
+          Enterprise BI Portal · Swift AI Ask
         </motion.div>
 
         {/* H1 */}

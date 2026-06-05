@@ -15,16 +15,16 @@ const faqs = [
     a: "The entire system runs inside your Azure tenant. Data is securely queried inside your cloud boundaries and is never extracted or sent to external servers. Row-Level Security (RLS) dynamically filters database rows based on the user's login identity.",
   },
   {
-    q: "What is BI Genius and how does it work?",
-    a: "BI Genius is the AI enablement layer built into the portal. It lets users ask questions in plain English against your Power BI semantic models. Every answer includes source attribution (which fields were used), decision tracing (step-by-step reasoning), and the exact DAX formula generated — so there are no black boxes.",
+    q: "What is Swift AI Ask and how does it work?",
+    a: "Swift AI Ask is the AI enablement layer built into the portal. It lets users ask questions in plain English against your Power BI semantic models. Every answer includes source attribution (which fields were used), decision tracing (step-by-step reasoning), and the exact DAX formula generated — so there are no black boxes.",
   },
   {
     q: "Can I white-label the portal with my own brand?",
     a: "Yes. On Pro and Scale plans you can fully remove SwiftAIApps branding and replace it with your own logo, colors, and domain. Starter plan includes portal access under the SwiftAIApps platform brand.",
   },
   {
-    q: "What AI models power BI Genius?",
-    a: "BI Genius uses models deployed within your Azure environment — including Azure OpenAI Service. Your data is never sent to external AI providers. The platform supports GPT-4o and other Azure-hosted models depending on your configuration.",
+    q: "What AI models power Swift AI Ask?",
+    a: "Swift AI Ask uses models deployed within your Azure environment — including Azure OpenAI Service. Your data is never sent to external AI providers. The platform supports GPT-4o and other Azure-hosted models depending on your configuration.",
   },
   {
     q: "How long does setup take?",
