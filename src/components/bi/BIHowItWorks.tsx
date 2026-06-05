@@ -19,8 +19,8 @@ const steps = [
     title: "Customize Experience",
     desc: "Configure your brand colors, navigation folders, user roles, and security boundaries.",
     border: "#4cd7f6",
-    img: null,
-    imgAlt: "",
+    img: "/images/step-customize.png",
+    imgAlt: "Customize branding, roles, and security settings in the BI portal",
   },
   {
     n: 3,
@@ -80,28 +80,15 @@ export function BIHowItWorks() {
                   </div>
                 )}
 
-                {/* Image or placeholder */}
-                <div className="mb-5 rounded-xl overflow-hidden border border-white/[0.07] bg-[#111827] mx-auto aspect-square flex items-center justify-center" style={{ maxWidth: 200 }}>
-                  {s.img ? (
-                    <Image
-                      src={s.img}
-                      alt={s.imgAlt}
-                      width={400}
-                      height={400}
-                      className="w-full h-auto object-cover"
-                    />
-                  ) : (
-                    /* Step 2 — no image yet: styled placeholder */
-                    <div className="w-full h-full flex flex-col items-center justify-center gap-3 p-6">
-                      <div className="w-12 h-12 rounded-xl bg-[#4cd7f6]/10 flex items-center justify-center">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4cd7f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
-                          <path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"/>
-                        </svg>
-                      </div>
-                      <p className="text-xs text-[#8c909f] font-mono">step-customize.png</p>
-                    </div>
-                  )}
+                {/* Step image */}
+                <div className="mb-5 rounded-xl overflow-hidden border border-white/[0.07] bg-[#111827] mx-auto aspect-square" style={{ maxWidth: 200 }}>
+                  <Image
+                    src={s.img!}
+                    alt={s.imgAlt}
+                    width={400}
+                    height={400}
+                    className="w-full h-auto object-cover"
+                  />
                 </div>
 
                 <h4 className="font-bold text-base mb-2 text-[#e5e2e1]">{s.title}</h4>
