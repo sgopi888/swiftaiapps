@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SwiftAIApps — Website
 
-## Getting Started
+Marketing website for SwiftAIApps, an AI engineering company.
 
-First, run the development server:
+## Tech Stack
+
+- **Next.js 16** (App Router, TypeScript, `output: standalone`)
+- **React 19**
+- **Tailwind CSS v4**
+- **shadcn/ui** (base-ui components)
+- **Framer Motion 12** — scroll reveal, stagger animations, FAQ accordion
+- **Lucide React** — icons
+- **pnpm 10.30.0** — package manager (pinned — do not change without updating `Dockerfile`)
+
+---
+
+## Local Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Install dependencies
+pnpm install
+
+# Start dev server (http://localhost:3000)
 pnpm dev
-# or
-bun dev
+
+# Production build
+pnpm build
+pnpm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Docker (Local + VPS)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Build and run (foreground)
+docker compose up --build
 
-## Learn More
+# Build and run detached (recommended for VPS)
+docker compose up --build -d
 
-To learn more about Next.js, take a look at the following resources:
+# Stop
+docker compose down
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# View logs
+docker compose logs -f
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The Docker build uses a multi-stage Dockerfile:
+- `deps` — installs dependencies with frozen lockfile
+- `builder` — runs `next build` to produce `standalone` output
+- `runner` — minimal production image (no dev deps), non-root user, port 3000
 
-## Deploy on Vercel
+**Important:** The `pnpm` version in `Dockerfile` is pinned to `10.30.0` to match the version that generated `pnpm-lock.yaml`. If you upgrade pnpm locally (`pnpm add -g pnpm`), update line 2 of the Dockerfile to match.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## VPS Deployment
+
+1. Copy the project to your VPS (git clone or `rsync`)
+2. Ensure Docker + Docker Compose are installed
+3. Run: `docker compose up --build -d`
+4. Optionally put Nginx in front as a reverse proxy to port 3000
+5. For HTTPS, use Certbot + Nginx or Cloudflare proxy
+
+---
+
+## Project Structure
+
+```
+src/
+  app/
+    page.tsx          ← Homepage (assembles all sections)
+    layout.tsx        ← Root layout, metadata, fonts
+    globals.css       ← Global styles, design tokens, .glass utility
+    privacy/page.tsx  ← Privacy Policy page
+    terms/page.tsx    ← Terms of Service page
+  components/
+    sections/
+      Navbar.tsx      ← Sticky nav, mobile menu
+      Hero.tsx        ← Hero + "Share Requirements" modal trigger
+      TrustBar.tsx    ← Technology logos strip
+      Services.tsx    ← 6-card What We Build grid
+      CredibilityBand.tsx  ← 4 trust signals
+      NextGenSystems.tsx   ← 4 next-gen AI cards
+      WhyUs.tsx       ← 4 pillars
+      Process.tsx     ← 5-step timeline
+      Integrations.tsx ← Integration chips
+      FAQ.tsx         ← Accordion FAQ (8 questions)
+      CTA.tsx         ← Final call-to-action + modal trigger
+      Footer.tsx      ← Links, copyright
+    ui/
+      ProjectModal.tsx ← Requirement intake form (opens email client)
+      SectionLabel.tsx
+      RevealSection.tsx
+```
+
+---
+
+## Contact / Forms
+
+There is no backend. The **"Share Your Requirements"** button opens a modal form. On submit, it composes a pre-filled email using `mailto:` and opens the user's email client addressed to `ai@swiftaiapps.com`.
+
+The **"Book Discovery Call"** button opens a pre-filled email compose window addressed to `ai@swiftaiapps.com`.
+
+This approach works on any hosting (static, Docker, VPS) with zero server infrastructure.
+
+---
+
+## Content Updates
+
+All page copy lives directly in the section components under `src/components/sections/`. No CMS — just edit the TypeScript files and redeploy.
+
+Key things to update when going live:
+- [ ] Replace LinkedIn URL if needed: `Footer.tsx` line with `linkedin.com/company/101817668`
+- [ ] Review Privacy Policy dates: `src/app/privacy/page.tsx`
+- [ ] Review Terms of Service: `src/app/terms/page.tsx`
+
+---
+
+## Known Constraints
+
+- **Next.js version:** This project uses Next.js 16 (not 15). The API is largely compatible with Next.js 15 App Router conventions.
+- **shadcn/ui accordion:** Uses `@base-ui/react` under the hood in this version. The FAQ uses a custom accordion built with Framer Motion instead to avoid API mismatch.
+- **pnpm version pinning:** Do not use `pnpm@latest` in Docker — it enforces a `minimumReleaseAge` supply-chain policy that rejects recently-published packages even if the lockfile is valid.
