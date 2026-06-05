@@ -3,6 +3,7 @@ import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { BIHero } from "@/components/bi/BIHero";
 import { BIFeatures } from "@/components/bi/BIFeatures";
+import { BIAIChatStrip } from "@/components/bi/BIAIChatStrip";
 import { BIHowItWorks } from "@/components/bi/BIHowItWorks";
 import { BIControlStrip } from "@/components/bi/BIControlStrip";
 import { BITransparencyStrip } from "@/components/bi/BITransparencyStrip";
@@ -24,6 +25,7 @@ export default function Home() {
       <main>
         <BIHero />
         <BIFeatures />
+        <BIAIChatStrip />
         <BIHowItWorks />
         <BIControlStrip />
         <BITransparencyStrip />

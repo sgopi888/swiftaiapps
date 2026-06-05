@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown, Play } from "lucide-react";
+import Image from "next/image";
 import { DiscoveryModal } from "@/components/ui/DiscoveryModal";
 import { ProjectModal } from "@/components/ui/ProjectModal";
 
@@ -11,15 +12,15 @@ export function BIHero() {
   const [projectOpen, setProjectOpen] = useState(false);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-16 overflow-hidden">
-      {/* Background glows — blue-to-purple, same system */}
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-16 pb-0 overflow-hidden">
+      {/* Background glows */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-[700px] h-[600px] bg-[#4d8eff]/[0.11] rounded-full blur-[130px] translate-x-1/3 -translate-y-1/4" />
         <div className="absolute bottom-0 left-0 w-[600px] h-[500px] bg-[#a078ff]/[0.09] rounded-full blur-[110px] -translate-x-1/3 translate-y-1/4" />
-        <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-[#4cd7f6]/[0.04] rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2" />
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center py-20 md:py-28">
+      {/* Text content */}
+      <div className="relative z-10 max-w-4xl mx-auto text-center pt-16 pb-10">
         {/* Eyebrow */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -30,7 +31,6 @@ export function BIHero() {
           Enterprise BI Portal · Swift AI Ask
         </motion.div>
 
-        {/* H1 */}
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -42,7 +42,6 @@ export function BIHero() {
           <span className="grad-text">and Query Business Intelligence</span>
         </motion.h1>
 
-        {/* Sub */}
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -58,7 +57,7 @@ export function BIHero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
         >
           <button
             onClick={() => setProjectOpen(true)}
@@ -81,12 +80,42 @@ export function BIHero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
           onClick={() => document.querySelector("#features")?.scrollIntoView({ behavior: "smooth" })}
-          className="mt-16 mx-auto flex flex-col items-center gap-1 text-[#8c909f] hover:text-[#adc6ff] transition-colors cursor-pointer bg-transparent border-none"
+          className="mx-auto flex flex-col items-center gap-1 text-[#8c909f] hover:text-[#adc6ff] transition-colors cursor-pointer bg-transparent border-none"
         >
           <span className="text-xs font-mono tracking-widest uppercase">Explore</span>
           <ChevronDown size={18} className="animate-bounce-slow" />
         </motion.button>
       </div>
+
+      {/* Dashboard image — rising from bottom */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, delay: 0.5, ease: "easeOut" }}
+        className="relative z-10 w-full max-w-5xl mx-auto px-4"
+      >
+        {/* Glow behind image */}
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-40 bg-[#4d8eff]/10 blur-3xl pointer-events-none" />
+        <div className="relative rounded-2xl overflow-hidden border border-white/[0.09] shadow-[0_0_80px_rgba(77,142,255,0.15)]">
+          {/* Top bar chrome */}
+          <div className="flex items-center gap-1.5 px-4 py-2.5 bg-[#111827] border-b border-white/[0.07]">
+            <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+            <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
+            <span className="w-3 h-3 rounded-full bg-[#28c840]" />
+            <span className="ml-3 flex-1 h-5 bg-white/[0.06] rounded-md" />
+          </div>
+          <Image
+            src="/images/bi-hero.png"
+            alt="Enterprise BI Portal dashboard showing Power BI reports with KPI cards, bar charts, and data visualizations"
+            width={1672}
+            height={941}
+            priority
+            className="w-full h-auto"
+          />
+          {/* Bottom fade */}
+          <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-[#0A0A0A] to-transparent pointer-events-none" />
+        </div>
+      </motion.div>
 
       <DiscoveryModal open={demoOpen} onClose={() => setDemoOpen(false)} />
       <ProjectModal open={projectOpen} onClose={() => setProjectOpen(false)} />

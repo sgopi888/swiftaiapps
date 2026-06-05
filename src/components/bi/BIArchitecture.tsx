@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ShieldCheck, Cpu, Lock } from "lucide-react";
 
@@ -78,6 +79,29 @@ export function BIArchitecture() {
         <p className="text-center text-xs text-[#8c909f] mt-5 font-mono">
           HTTPS / TLS 1.2+ · Dynamic RLS Enforced · Azure Tenant Boundary
         </p>
+      </motion.div>
+
+      {/* Dashboard preview */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.65 }}
+        className="mb-12 rounded-2xl overflow-hidden border border-white/[0.09] shadow-[0_0_60px_rgba(160,120,255,0.1)]"
+      >
+        <div className="flex items-center gap-1.5 px-4 py-2.5 bg-[#111827] border-b border-white/[0.07]">
+          <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+          <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
+          <span className="w-3 h-3 rounded-full bg-[#28c840]" />
+          <span className="ml-3 text-xs text-[#8c909f] font-mono">Secure Portal — Admin View</span>
+        </div>
+        <Image
+          src="/images/bi-dashboard-2.png"
+          alt="Enterprise BI Portal admin view showing secure embedded Power BI dashboard with role-based access controls"
+          width={1672}
+          height={941}
+          className="w-full h-auto"
+        />
       </motion.div>
 
       {/* Capability cards */}
