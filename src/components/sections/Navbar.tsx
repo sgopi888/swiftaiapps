@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { DiscoveryModal } from "@/components/ui/DiscoveryModal";
+import { DISCOVERY_CALL_URL } from "@/lib/contact";
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -25,11 +25,10 @@ const biNavLinks = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [discoveryOpen, setDiscoveryOpen] = useState(false);
   const pathname = usePathname();
 
-  const isBIPage = pathname === "/" || pathname === "";
-  const links = isBIPage ? biNavLinks : navLinks;
+  const isAIPage = pathname === "/" || pathname === "";
+  const links = isAIPage ? navLinks : biNavLinks;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -65,22 +64,22 @@ export function Navbar() {
               <Link
                 href="/"
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                  isBIPage
-                    ? "bg-gradient-to-r from-[#4d8eff] to-[#a078ff] text-[#00285d] shadow-sm"
-                    : "text-[#8c909f] hover:text-white"
-                }`}
-              >
-                BI Portal
-              </Link>
-              <Link
-                href="/services"
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                  !isBIPage
+                  isAIPage
                     ? "bg-gradient-to-r from-[#4d8eff] to-[#a078ff] text-[#00285d] shadow-sm"
                     : "text-[#8c909f] hover:text-white"
                 }`}
               >
                 AI Services
+              </Link>
+              <Link
+                href="/services"
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                  !isAIPage
+                    ? "bg-gradient-to-r from-[#4d8eff] to-[#a078ff] text-[#00285d] shadow-sm"
+                    : "text-[#8c909f] hover:text-white"
+                }`}
+              >
+                BI Portal
               </Link>
             </div>
 
@@ -100,12 +99,14 @@ export function Navbar() {
 
           {/* CTA */}
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => setDiscoveryOpen(true)}
+            <a
+              href={DISCOVERY_CALL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-1.5 px-5 py-2 rounded-xl bg-gradient-to-r from-[#4d8eff] to-[#a078ff] font-semibold text-[#00285d] text-sm hover:scale-105 active:scale-95 transition-transform shadow-[0_0_20px_rgba(77,142,255,0.25)] cursor-pointer border-none"
             >
               Book a Call
-            </button>
+            </a>
             <button
               className="md:hidden p-2 rounded-lg text-[#c2c6d6] hover:text-white transition-colors"
               onClick={() => setMobileOpen((v) => !v)}
@@ -133,23 +134,23 @@ export function Navbar() {
                     href="/"
                     onClick={() => setMobileOpen(false)}
                     className={`flex-1 py-2 px-3 rounded-xl text-center text-xs font-semibold transition-all ${
-                      isBIPage
-                        ? "bg-gradient-to-r from-[#4d8eff] to-[#a078ff] text-[#00285d]"
-                        : "bg-white/[0.05] text-[#8c909f]"
-                    }`}
-                  >
-                    BI Portal
-                  </Link>
-                  <Link
-                    href="/services"
-                    onClick={() => setMobileOpen(false)}
-                    className={`flex-1 py-2 px-3 rounded-xl text-center text-xs font-semibold transition-all ${
-                      !isBIPage
+                      isAIPage
                         ? "bg-gradient-to-r from-[#4d8eff] to-[#a078ff] text-[#00285d]"
                         : "bg-white/[0.05] text-[#8c909f]"
                     }`}
                   >
                     AI Services
+                  </Link>
+                  <Link
+                    href="/services"
+                    onClick={() => setMobileOpen(false)}
+                    className={`flex-1 py-2 px-3 rounded-xl text-center text-xs font-semibold transition-all ${
+                      !isAIPage
+                        ? "bg-gradient-to-r from-[#4d8eff] to-[#a078ff] text-[#00285d]"
+                        : "bg-white/[0.05] text-[#8c909f]"
+                    }`}
+                  >
+                    BI Portal
                   </Link>
                 </div>
                 {links.map((l) => (
@@ -161,19 +162,20 @@ export function Navbar() {
                     {l.label}
                   </button>
                 ))}
-                <button
-                  onClick={() => { setMobileOpen(false); setDiscoveryOpen(true); }}
+                <a
+                  href={DISCOVERY_CALL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileOpen(false)}
                   className="mt-2 py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#4d8eff] to-[#a078ff] text-[#00285d] font-semibold text-center cursor-pointer border-none"
                 >
                   Book a Call
-                </button>
+                </a>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </header>
-
-      <DiscoveryModal open={discoveryOpen} onClose={() => setDiscoveryOpen(false)} />
     </>
   );
 }

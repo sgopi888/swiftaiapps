@@ -4,11 +4,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown, Play } from "lucide-react";
 import Image from "next/image";
-import { DiscoveryModal } from "@/components/ui/DiscoveryModal";
 import { ProjectModal } from "@/components/ui/ProjectModal";
+import { DISCOVERY_CALL_URL } from "@/lib/contact";
 
 export function BIHero() {
-  const [demoOpen, setDemoOpen] = useState(false);
   const [projectOpen, setProjectOpen] = useState(false);
 
   return (
@@ -65,13 +64,15 @@ export function BIHero() {
           >
             Get Started — 30-Day Free Trial
           </button>
-          <button
-            onClick={() => setDemoOpen(true)}
+          <a
+            href={DISCOVERY_CALL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl glass font-semibold text-[#e5e2e1] text-base hover:bg-white/5 transition-all cursor-pointer border-none"
           >
             <Play size={15} className="text-[#4d8eff]" />
             Book a Walkthrough
-          </button>
+          </a>
         </motion.div>
 
         {/* Scroll cue */}
@@ -117,7 +118,6 @@ export function BIHero() {
         </div>
       </motion.div>
 
-      <DiscoveryModal open={demoOpen} onClose={() => setDemoOpen(false)} />
       <ProjectModal open={projectOpen} onClose={() => setProjectOpen(false)} />
     </section>
   );

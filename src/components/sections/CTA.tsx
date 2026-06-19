@@ -1,15 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
-import { ProjectModal } from "@/components/ui/ProjectModal";
-import { DiscoveryModal } from "@/components/ui/DiscoveryModal";
+import { CONTACT_MAILTO, DISCOVERY_CALL_URL, REQUIREMENTS_FORM_URL } from "@/lib/contact";
 
 export function CTA() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [discoveryOpen, setDiscoveryOpen] = useState(false);
-
   return (
     <section className="py-24 px-6">
       <div className="max-w-3xl mx-auto relative">
@@ -33,22 +28,26 @@ export function CTA() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-            <button
-              onClick={() => setModalOpen(true)}
-              className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#4d8eff] to-[#a078ff] font-bold text-[#00285d] text-base hover:scale-105 active:scale-95 transition-transform shadow-[0_0_30px_rgba(77,142,255,0.3)] cursor-pointer border-none"
+            <a
+              href={REQUIREMENTS_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#4d8eff] to-[#a078ff] font-bold text-[#00285d] text-base hover:scale-105 active:scale-95 transition-transform shadow-[0_0_30px_rgba(77,142,255,0.3)] cursor-pointer border-none"
             >
               Share Your Requirements
-            </button>
-            <button
-              onClick={() => setDiscoveryOpen(true)}
-              className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-white/[0.12] hover:bg-white/[0.04] font-semibold text-[#e5e2e1] text-base transition-all cursor-pointer bg-transparent"
+            </a>
+            <a
+              href={DISCOVERY_CALL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-xl border border-white/[0.12] hover:bg-white/[0.04] font-semibold text-[#e5e2e1] text-base transition-all cursor-pointer bg-transparent"
             >
               Book Discovery Call
-            </button>
+            </a>
           </div>
 
           <a
-            href="mailto:ai@swiftaiapps.com"
+            href={CONTACT_MAILTO}
             className="inline-flex items-center gap-2 font-mono text-sm text-[#8c909f] hover:text-[#adc6ff] transition-colors"
           >
             <Mail size={14} />
@@ -57,8 +56,6 @@ export function CTA() {
         </motion.div>
       </div>
 
-      <ProjectModal open={modalOpen} onClose={() => setModalOpen(false)} />
-      <DiscoveryModal open={discoveryOpen} onClose={() => setDiscoveryOpen(false)} />
     </section>
   );
 }

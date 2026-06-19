@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/sections/Navbar";
+import { Hero } from "@/components/sections/Hero";
+import { TrustBar } from "@/components/sections/TrustBar";
+import { Services } from "@/components/sections/Services";
+import { CredibilityBand } from "@/components/sections/CredibilityBand";
+import { NextGenSystems } from "@/components/sections/NextGenSystems";
+import { WhyUs } from "@/components/sections/WhyUs";
+import { Process } from "@/components/sections/Process";
+import { Integrations } from "@/components/sections/Integrations";
+import { FAQ } from "@/components/sections/FAQ";
+import { CTA } from "@/components/sections/CTA";
 import { Footer } from "@/components/sections/Footer";
-import { BIHero } from "@/components/bi/BIHero";
-import { BIFeatures } from "@/components/bi/BIFeatures";
-import { BIAIChatStrip } from "@/components/bi/BIAIChatStrip";
-import { BIHowItWorks } from "@/components/bi/BIHowItWorks";
-import { BIControlStrip } from "@/components/bi/BIControlStrip";
-import { BITransparencyStrip } from "@/components/bi/BITransparencyStrip";
-import { BIArchitecture } from "@/components/bi/BIArchitecture";
-import { BIPricing } from "@/components/bi/BIPricing";
-import { BIFAQ } from "@/components/bi/BIFAQ";
-import { BICTA } from "@/components/bi/BICTA";
 
 export const metadata: Metadata = {
-  title: "Enterprise BI Portal & Swift AI Ask | SwiftAIApps",
+  title: "AI Engineering Services | SwiftAIApps",
   description:
-    "A secure, white-labeled Power BI Embedded portal with plug-and-play AI agents running inside your own Azure environment. Unlimited end-users, no Power BI Pro license required.",
+    "We engineer AI agents, enterprise copilots, RAG systems, and workflow automation for organizations that want to operate faster with less manual effort.",
 };
 
 export default function Home() {
@@ -23,16 +23,16 @@ export default function Home() {
     <>
       <Navbar />
       <main>
-        <BIHero />
-        <BIFeatures />
-        <BIAIChatStrip />
-        <BIHowItWorks />
-        <BIControlStrip />
-        <BITransparencyStrip />
-        <BIArchitecture />
-        <BIPricing />
-        <BIFAQ />
-        <BICTA />
+        <Hero />
+        <TrustBar />
+        <Services />
+        <CredibilityBand />
+        <NextGenSystems />
+        <WhyUs />
+        <Process />
+        <Integrations />
+        <FAQ />
+        <CTA />
       </main>
       <Footer />
     </>

@@ -4,11 +4,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import { ProjectModal } from "@/components/ui/ProjectModal";
-import { DiscoveryModal } from "@/components/ui/DiscoveryModal";
+import { CONTACT_MAILTO, DISCOVERY_CALL_URL } from "@/lib/contact";
 
 export function BICTA() {
   const [trialOpen, setTrialOpen] = useState(false);
-  const [demoOpen, setDemoOpen] = useState(false);
 
   return (
     <section className="py-24 px-6">
@@ -39,16 +38,18 @@ export function BICTA() {
             >
               Start Free Trial
             </button>
-            <button
-              onClick={() => setDemoOpen(true)}
-              className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-white/[0.12] hover:bg-white/[0.04] font-semibold text-[#e5e2e1] text-base transition-all cursor-pointer bg-transparent"
+            <a
+              href={DISCOVERY_CALL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-xl border border-white/[0.12] hover:bg-white/[0.04] font-semibold text-[#e5e2e1] text-base transition-all cursor-pointer bg-transparent"
             >
               Book a Walkthrough
-            </button>
+            </a>
           </div>
 
           <a
-            href="mailto:ai@swiftaiapps.com"
+            href={CONTACT_MAILTO}
             className="inline-flex items-center gap-2 font-mono text-sm text-[#8c909f] hover:text-[#adc6ff] transition-colors"
           >
             <Mail size={14} />
@@ -58,7 +59,6 @@ export function BICTA() {
       </div>
 
       <ProjectModal open={trialOpen} onClose={() => setTrialOpen(false)} />
-      <DiscoveryModal open={demoOpen} onClose={() => setDemoOpen(false)} />
     </section>
   );
 }

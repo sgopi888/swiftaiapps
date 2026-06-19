@@ -1,16 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
-import { ProjectModal } from "@/components/ui/ProjectModal";
-import { DiscoveryModal } from "@/components/ui/DiscoveryModal";
+import { DISCOVERY_CALL_URL, REQUIREMENTS_FORM_URL } from "@/lib/contact";
 
 export function Hero() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [discoveryOpen, setDiscoveryOpen] = useState(false);
-
   const scrollToServices = () => {
     document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -71,22 +66,23 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <button
-            onClick={() => setModalOpen(true)}
-            className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#4d8eff] to-[#a078ff] font-bold text-[#00285d] text-base hover:scale-105 active:scale-95 transition-transform shadow-[0_0_30px_rgba(77,142,255,0.3)] cursor-pointer border-none"
+          <a
+            href={REQUIREMENTS_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#4d8eff] to-[#a078ff] font-bold text-[#00285d] text-base hover:scale-105 active:scale-95 transition-transform shadow-[0_0_30px_rgba(77,142,255,0.3)] cursor-pointer border-none"
           >
             Share Your Requirements
-          </button>
-          <button
-            onClick={() => setDiscoveryOpen(true)}
-            className="w-full sm:w-auto px-8 py-3.5 rounded-xl glass font-semibold text-[#e5e2e1] text-base hover:bg-white/5 transition-all cursor-pointer border-none"
+          </a>
+          <a
+            href={DISCOVERY_CALL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-xl glass font-semibold text-[#e5e2e1] text-base hover:bg-white/5 transition-all cursor-pointer border-none"
           >
             Book Discovery Call
-          </button>
+          </a>
         </motion.div>
-
-        <ProjectModal open={modalOpen} onClose={() => setModalOpen(false)} />
-        <DiscoveryModal open={discoveryOpen} onClose={() => setDiscoveryOpen(false)} />
 
         {/* Scroll cue */}
         <motion.button

@@ -14,16 +14,16 @@ Marketing website for SwiftAIApps, an AI engineering company.
 
 ---
 
-## Local Development
+## Run in Terminal
 
 ```bash
-# Install dependencies
+cd ~/Desktop/Website_swiftapps/swiftaiapps
 pnpm install
-
-# Start dev server (http://localhost:3000)
 pnpm dev
+```
 
-# Production build
+```bash
+cd ~/Desktop/Website_swiftapps/swiftaiapps
 pnpm build
 pnpm start
 ```
@@ -57,11 +57,55 @@ The Docker build uses a multi-stage Dockerfile:
 
 ## VPS Deployment
 
-1. Copy the project to your VPS (git clone or `rsync`)
-2. Ensure Docker + Docker Compose are installed
-3. Run: `docker compose up --build -d`
-4. Optionally put Nginx in front as a reverse proxy to port 3000
-5. For HTTPS, use Certbot + Nginx or Cloudflare proxy
+Example deployment target for this project:
+
+```bash
+/var/www/swiftaiapps.com
+```
+
+1. Create a new site directory on the VPS
+2. Copy the project to the VPS with `rsync` or `git clone`
+3. Ensure Docker + Docker Compose are installed
+4. Run: `docker compose up --build -d`
+5. Put Nginx in front as a reverse proxy to port `3000`
+6. Point DNS for `swiftaiapps.com` to the VPS IP
+7. Issue HTTPS with Certbot once DNS resolves
+
+Example sync command from local machine:
+
+```bash
+rsync -avz --delete \
+  --exclude 'node_modules' \
+  --exclude '.next' \
+  --exclude '.git' \
+  /Users/sreekanthgopi/Desktop/Website_swiftapps/swiftaiapps/ \
+  root@YOUR_SERVER_IP:/var/www/swiftaiapps.com/
+```
+
+Example first-time VPS setup:
+
+```bash
+mkdir -p /var/www/swiftaiapps.com
+cd /var/www/swiftaiapps.com
+docker compose up --build -d
+docker compose logs -f web
+```
+
+Example Nginx reverse proxy:
+
+```nginx
+server {
+    server_name swiftaiapps.com www.swiftaiapps.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
 
 ---
 
@@ -78,7 +122,7 @@ src/
   components/
     sections/
       Navbar.tsx      ← Sticky nav, mobile menu
-      Hero.tsx        ← Hero + "Share Requirements" modal trigger
+      Hero.tsx        ← Hero + primary CTAs
       TrustBar.tsx    ← Technology logos strip
       Services.tsx    ← 6-card What We Build grid
       CredibilityBand.tsx  ← 4 trust signals
@@ -87,10 +131,10 @@ src/
       Process.tsx     ← 5-step timeline
       Integrations.tsx ← Integration chips
       FAQ.tsx         ← Accordion FAQ (8 questions)
-      CTA.tsx         ← Final call-to-action + modal trigger
+      CTA.tsx         ← Final call-to-action section
       Footer.tsx      ← Links, copyright
     ui/
-      ProjectModal.tsx ← Requirement intake form (opens email client)
+      ProjectModal.tsx ← Project inquiry modal used on BI-related CTAs
       SectionLabel.tsx
       RevealSection.tsx
 ```
@@ -99,9 +143,11 @@ src/
 
 ## Contact / Forms
 
-There is no backend. The **"Share Your Requirements"** button opens a modal form. On submit, it composes a pre-filled email using `mailto:` and opens the user's email client addressed to `ai@swiftaiapps.com`.
+There is no backend.
 
-The **"Book Discovery Call"** button opens a pre-filled email compose window addressed to `ai@swiftaiapps.com`.
+- **"Share Your Requirements"** opens a Google Form
+- **"Book Discovery Call"** opens a Google Calendar booking link
+- The footer email link opens `mailto:ai@swiftaiapps.com`
 
 This approach works on any hosting (static, Docker, VPS) with zero server infrastructure.
 

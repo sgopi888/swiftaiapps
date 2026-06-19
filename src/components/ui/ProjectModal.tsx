@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, ChevronDown } from "lucide-react";
+import { CONTACT_EMAIL } from "@/lib/contact";
 
 interface ProjectModalProps {
   open: boolean;
@@ -59,7 +60,7 @@ export function ProjectModal({ open, onClose }: ProjectModalProps) {
     const body = encodeURIComponent(
       `Name: ${name}\nCompany: ${company || "N/A"}\nEmail: ${email}\n\nProject Description:\n${description}\n\nBudget: ${budget || "Not specified"}\nTimeline: ${timeline || "Not specified"}`
     );
-    window.location.href = `mailto:ai@swiftaiapps.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
     onClose();
   };
 
@@ -197,12 +198,12 @@ export function ProjectModal({ open, onClose }: ProjectModalProps) {
                   className="mt-2 w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#4d8eff] to-[#a078ff] font-bold text-[#00285d] text-sm hover:scale-[1.02] active:scale-95 transition-transform shadow-[0_0_20px_rgba(77,142,255,0.25)]"
                 >
                   <Send size={15} />
-                  Send Requirement
+                  Open Email Draft
                 </button>
 
                 <p className="text-center text-[11px] text-[#8c909f]">
-                  This opens your email client pre-filled and sends to{" "}
-                  <span className="text-[#adc6ff]">ai@swiftaiapps.com</span>
+                  This opens a pre-filled email draft in your email app addressed to{" "}
+                  <span className="text-[#adc6ff]">{CONTACT_EMAIL}</span>
                 </p>
               </form>
             </div>
