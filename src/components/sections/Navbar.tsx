@@ -22,13 +22,22 @@ const biNavLinks = [
   { label: "FAQ", href: "#faq" },
 ];
 
+const restaurantNavLinks = [
+  { label: "Platform", href: "#platform" },
+  { label: "Use Cases", href: "#use-cases" },
+  { label: "How It Works", href: "#how-it-works" },
+  { label: "Results", href: "#results" },
+];
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
   const isAIPage = pathname === "/" || pathname === "";
-  const links = isAIPage ? navLinks : biNavLinks;
+  const isBIPage = pathname === "/services";
+  const isRestaurantPage = pathname === "/restaurant";
+  const links = isAIPage ? navLinks : isRestaurantPage ? restaurantNavLinks : biNavLinks;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -74,12 +83,22 @@ export function Navbar() {
               <Link
                 href="/services"
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                  !isAIPage
+                  isBIPage
                     ? "bg-gradient-to-r from-[#4d8eff] to-[#a078ff] text-[#00285d] shadow-sm"
                     : "text-[#8c909f] hover:text-white"
                 }`}
               >
                 BI Portal
+              </Link>
+              <Link
+                href="/restaurant"
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                  isRestaurantPage
+                    ? "bg-gradient-to-r from-[#4d8eff] to-[#a078ff] text-[#00285d] shadow-sm"
+                    : "text-[#8c909f] hover:text-white"
+                }`}
+              >
+                Restaurant AI
               </Link>
             </div>
 
@@ -145,12 +164,23 @@ export function Navbar() {
                     href="/services"
                     onClick={() => setMobileOpen(false)}
                     className={`flex-1 py-2 px-3 rounded-xl text-center text-xs font-semibold transition-all ${
-                      !isAIPage
+                      isBIPage
                         ? "bg-gradient-to-r from-[#4d8eff] to-[#a078ff] text-[#00285d]"
                         : "bg-white/[0.05] text-[#8c909f]"
                     }`}
                   >
                     BI Portal
+                  </Link>
+                  <Link
+                    href="/restaurant"
+                    onClick={() => setMobileOpen(false)}
+                    className={`flex-1 py-2 px-3 rounded-xl text-center text-xs font-semibold transition-all ${
+                      isRestaurantPage
+                        ? "bg-gradient-to-r from-[#4d8eff] to-[#a078ff] text-[#00285d]"
+                        : "bg-white/[0.05] text-[#8c909f]"
+                    }`}
+                  >
+                    Restaurant AI
                   </Link>
                 </div>
                 {links.map((l) => (
