@@ -13,6 +13,7 @@ import {
   UtensilsCrossed,
 } from "lucide-react";
 import { DISCOVERY_CALL_URL } from "@/lib/contact";
+import { VoiceAgentDemo } from "@/components/restaurant/VoiceAgentDemo";
 
 const capabilities = [
   {
@@ -102,6 +103,8 @@ export function RestaurantLanding() {
           </div>
         </div>
       </section>
+
+      <VoiceAgentDemo />
 
       <section id="platform" className="border-y border-white/[0.06] bg-[#0d0d0d] py-24 scroll-mt-20">
         <div className="max-w-[1280px] mx-auto px-6">
