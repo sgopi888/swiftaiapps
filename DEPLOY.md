@@ -160,11 +160,27 @@ Then visit **https://swiftaiapps.com** in a browser.
 
 ## Updating the app later (redeploy after a git push)
 
+Fetch and inspect the incoming update before changing the running checkout:
+
 ```bash
 cd /opt/swiftapps
-git pull
-docker compose up --build -d              # rebuilds image, restarts container, keeps port 3001
-docker compose logs -f web
+git fetch origin
+git status -sb
+git log --oneline HEAD..origin/main
+git diff --stat HEAD..origin/main
+git diff --name-only HEAD..origin/main
+```
+
+The VPS intentionally has a local `docker-compose.yml` modification for the `3001:3000`
+port mapping. Do not restore or overwrite it. If the incoming file list does not include
+`docker-compose.yml`, fast-forward and redeploy:
+
+```bash
+git pull --ff-only origin main
+docker compose up --build -d
+docker compose ps
+docker compose logs --tail=50 web
+curl -I https://swiftaiapps.com/restaurant    # expect HTTP 200
 ```
 
 ---

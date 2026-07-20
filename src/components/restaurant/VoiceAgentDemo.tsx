@@ -16,7 +16,6 @@ const demo = {
   poster: "/images/restaurant-voice-agent-poster.jpg",
   width: 916,
   height: 1920,
-  caption: "79-second unedited call · real voice agent · sound on",
   alt: "Recording of an AI voice agent answering a restaurant's phone and taking a pickup order",
   beats: [
     {
@@ -112,9 +111,6 @@ export function VoiceAgentDemo() {
               )}
               <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-[#4d8eff]/20" />
             </div>
-            <p className="mt-4 text-center font-mono text-[11px] text-[#8c909f]">
-              {demo.caption}
-            </p>
           </motion.div>
 
           {/* Right — text */}

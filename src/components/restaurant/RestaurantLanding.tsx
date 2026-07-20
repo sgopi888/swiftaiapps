@@ -42,6 +42,10 @@ const useCases = [
   ["01", "Order", "Conversational ordering across web, QR, and messaging."],
   ["02", "Operate", "Forecast demand and give each shift a clear action list."],
   ["03", "Retain", "Bring guests back with timely, preference-aware outreach."],
+  ["04", "Hotels & Travel", "Answer guest questions, manage bookings, provide multilingual assistance, and hand conversations to staff."],
+  ["05", "Healthcare & Dental Clinics", "Schedule appointments, send reminders, answer common questions, and transfer urgent calls."],
+  ["06", "Home Services", "Qualify requests, collect job details, provide estimates, and dispatch plumbers, electricians, or HVAC technicians."],
+  ["07", "Real Estate", "Qualify buyers and renters, answer property questions, and schedule viewings."],
 ];
 
 export function RestaurantLanding() {
@@ -117,7 +121,7 @@ export function RestaurantLanding() {
       <section id="use-cases" className="py-24 scroll-mt-20">
         <div className="max-w-[1120px] mx-auto px-6 grid lg:grid-cols-[.7fr_1.3fr] gap-16">
           <div><p className="text-xs font-mono uppercase tracking-[.2em] text-[#a078ff]">One connected journey</p><h2 className="mt-4 text-4xl font-bold text-white">More than a chatbot.</h2><p className="mt-5 leading-7 text-[#8f95a8]">Restaurant AI links the guest experience to the operating decisions behind it.</p></div>
-          <div>{useCases.map(([n,title,copy])=><div key={n} className="grid grid-cols-[48px_1fr] sm:grid-cols-[60px_150px_1fr] gap-4 border-t border-white/[0.08] py-7"><span className="font-mono text-xs text-[#52586a]">{n}</span><h3 className="text-xl font-semibold text-white">{title}</h3><p className="col-start-2 sm:col-start-auto text-sm leading-6 text-[#9096a8]">{copy}</p></div>)}</div>
+          <div>{useCases.map(([n,title,copy])=><div key={n} className="grid grid-cols-[48px_1fr] sm:grid-cols-[60px_210px_1fr] gap-4 border-t border-white/[0.08] py-7"><span className="font-mono text-xs text-[#52586a]">{n}</span><h3 className="text-xl font-semibold text-white">{title}</h3><p className="col-start-2 sm:col-start-auto text-sm leading-6 text-[#9096a8]">{copy}</p></div>)}</div>
         </div>
       </section>
 
