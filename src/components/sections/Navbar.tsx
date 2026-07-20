@@ -23,6 +23,7 @@ const biNavLinks = [
 ];
 
 const restaurantNavLinks = [
+  { label: "Demo", href: "#demo" },
   { label: "Platform", href: "#platform" },
   { label: "Use Cases", href: "#use-cases" },
   { label: "How It Works", href: "#how-it-works" },
