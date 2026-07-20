@@ -38,14 +38,19 @@ const capabilities = [
   },
 ];
 
-const useCases = [
-  ["01", "Order", "Conversational ordering across web, QR, and messaging."],
-  ["02", "Operate", "Forecast demand and give each shift a clear action list."],
-  ["03", "Retain", "Bring guests back with timely, preference-aware outreach."],
-  ["04", "Hotels & Travel", "Answer guest questions, manage bookings, provide multilingual assistance, and hand conversations to staff."],
-  ["05", "Healthcare & Dental Clinics", "Schedule appointments, send reminders, answer common questions, and transfer urgent calls."],
-  ["06", "Home Services", "Qualify requests, collect job details, provide estimates, and dispatch plumbers, electricians, or HVAC technicians."],
-  ["07", "Real Estate", "Qualify buyers and renters, answer property questions, and schedule viewings."],
+const journeyCapabilities = [
+  ["01", "Never Miss a Guest", "Answer every phone call, SMS, and WhatsApp message—even after hours.", "md:col-span-3"],
+  ["02", "Take Orders", "Handle orders, menu questions, dietary requests, add-ons, and live updates.", "md:col-span-3"],
+  ["03", "Handle Every Call", "Manage simultaneous calls without hold times, missed orders, or busy signals.", "md:col-span-2"],
+  ["04", "Free Your Team", "Automate repetitive conversations so staff can focus on guests and service.", "md:col-span-2"],
+  ["05", "Bring Guests Back", "Automate feedback, follow-ups, and personalized offers through SMS and WhatsApp.", "md:col-span-2"],
+];
+
+const industries = [
+  ["01", "Hotels & Travel", "Answer guest questions, manage bookings, provide multilingual assistance, and hand conversations to staff."],
+  ["02", "Healthcare & Dental Clinics", "Schedule appointments, send reminders, answer common questions, and transfer urgent calls."],
+  ["03", "Home Services", "Qualify requests, collect job details, provide estimates, and dispatch plumbers, electricians, or HVAC technicians."],
+  ["04", "Real Estate", "Qualify buyers and renters, answer property questions, and schedule viewings."],
 ];
 
 export function RestaurantLanding() {
@@ -118,10 +123,48 @@ export function RestaurantLanding() {
         </div>
       </section>
 
-      <section id="use-cases" className="py-24 scroll-mt-20">
-        <div className="max-w-[1120px] mx-auto px-6 grid lg:grid-cols-[.7fr_1.3fr] gap-16">
-          <div><p className="text-xs font-mono uppercase tracking-[.2em] text-[#a078ff]">One connected journey</p><h2 className="mt-4 text-4xl font-bold text-white">More than a chatbot.</h2><p className="mt-5 leading-7 text-[#8f95a8]">Restaurant AI links the guest experience to the operating decisions behind it.</p></div>
-          <div>{useCases.map(([n,title,copy])=><div key={n} className="grid grid-cols-[48px_1fr] sm:grid-cols-[60px_210px_1fr] gap-4 border-t border-white/[0.08] py-7"><span className="font-mono text-xs text-[#52586a]">{n}</span><h3 className="text-xl font-semibold text-white">{title}</h3><p className="col-start-2 sm:col-start-auto text-sm leading-6 text-[#9096a8]">{copy}</p></div>)}</div>
+      <section id="use-cases" className="relative overflow-hidden border-y border-white/[0.06] bg-[#0d0d0d] py-24 scroll-mt-20">
+        <div className="absolute left-1/2 top-0 h-72 w-[720px] -translate-x-1/2 rounded-full bg-[#4d8eff]/[0.07] blur-3xl" />
+        <div className="relative max-w-[1120px] mx-auto px-6">
+          <div className="max-w-2xl">
+            <p className="text-xs font-mono uppercase tracking-[.2em] text-[#a078ff]">One connected journey</p>
+            <h2 className="mt-4 text-4xl font-bold text-white">More than a chatbot.</h2>
+            <p className="mt-5 leading-7 text-[#8f95a8]">Restaurant AI connects guest conversations, ordering, operations, and retention across every channel.</p>
+          </div>
+          <div className="mt-12 grid md:grid-cols-6 gap-4">
+            {journeyCapabilities.map(([n,title,copy,span]) => (
+              <article key={n} className={`${span} group relative min-h-52 overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] p-7 transition-colors hover:border-[#4d8eff]/30 hover:bg-white/[0.04]`}>
+                <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-[#4cd7f6]/[0.06] blur-2xl transition-colors group-hover:bg-[#4cd7f6]/10" />
+                <span className="font-mono text-xs text-[#596074]">{n}</span>
+                <h3 className="mt-10 text-xl font-semibold text-white">{title}</h3>
+                <p className="mt-3 max-w-md text-sm leading-6 text-[#9096a8]">{copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24">
+        <div className="max-w-[1120px] mx-auto px-6">
+          <div className="grid lg:grid-cols-[.72fr_1.28fr] gap-12 lg:gap-16 items-start">
+            <div className="lg:sticky lg:top-28">
+              <p className="text-xs font-mono uppercase tracking-[.2em] text-[#4cd7f6]">Built for every conversation</p>
+              <h2 className="mt-4 text-4xl font-bold text-white">One AI platform.<br /><span className="grad-text">Many industries.</span></h2>
+              <p className="mt-5 leading-7 text-[#8f95a8]">Adapt intelligent voice and messaging agents to the workflows, customers, and systems unique to your business.</p>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-px overflow-hidden rounded-[24px] border border-white/[0.08] bg-white/[0.08]">
+              {industries.map(([n,title,copy]) => (
+                <article key={n} className="group min-h-64 bg-[#101116] p-7 sm:p-8 transition-colors hover:bg-[#141722]">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-xs text-[#596074]">{n}</span>
+                    <ArrowRight size={16} className="text-[#4cd7f6]/40 transition-transform group-hover:translate-x-1 group-hover:text-[#4cd7f6]" />
+                  </div>
+                  <h3 className="mt-12 text-xl font-semibold text-white">{title}</h3>
+                  <p className="mt-4 text-sm leading-6 text-[#9096a8]">{copy}</p>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
