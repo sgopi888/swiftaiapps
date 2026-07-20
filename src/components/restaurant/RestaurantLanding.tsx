@@ -125,7 +125,19 @@ export function RestaurantLanding() {
         <div className="max-w-[1280px] mx-auto px-6">
           <p className="text-xs font-mono uppercase tracking-[.2em] text-[#4cd7f6]">The intelligence layer</p>
           <div className="mt-4 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5"><h2 className="max-w-2xl text-4xl sm:text-5xl font-bold tracking-tight text-white">From first hello to last table.</h2><p className="max-w-md text-[#8f95a8] leading-7">Give guests faster service and teams clearer decisions without replacing the systems that already run your business.</p></div>
-          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-4">{capabilities.map(({image,alt,title,copy})=><article key={title} className="group rounded-2xl border border-white/[0.07] bg-white/[0.025] p-6 hover:border-[#4d8eff]/30 hover:bg-white/[0.04] transition-colors"><div className="relative size-20 overflow-hidden rounded-2xl border border-white/[0.07] bg-[#07090d] shadow-[0_0_24px_rgba(77,142,255,0.08)]"><Image src={image} alt={alt} fill sizes="80px" className="object-cover transition-transform duration-500 group-hover:scale-105" /></div><h3 className="mt-7 text-lg font-semibold text-white">{title}</h3><p className="mt-3 text-sm leading-6 text-[#8f95a8]">{copy}</p></article>)}</div>
+          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {capabilities.map(({image,alt,title,copy})=>(
+              <article key={title} className="group overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.025] transition-colors hover:border-[#4d8eff]/30 hover:bg-white/[0.04]">
+                <div className="relative aspect-[4/3] overflow-hidden bg-[#07090d]">
+                  <Image src={image} alt={alt} fill sizes="(min-width:1024px) 300px, (min-width:768px) 46vw, 92vw" className="object-cover object-bottom transition-transform duration-700 group-hover:scale-105" />
+                </div>
+                <div className="p-6 pt-5">
+                  <h3 className="text-lg font-semibold text-white">{title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[#8f95a8]">{copy}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -137,18 +149,22 @@ export function RestaurantLanding() {
             <h2 className="mt-4 text-4xl font-bold text-white">More than a chatbot.</h2>
             <p className="mt-5 leading-7 text-[#8f95a8]">Restaurant AI connects guest conversations, ordering, operations, and retention across every channel.</p>
           </div>
-          <div className="mt-12 grid md:grid-cols-6 gap-4">
-            {journeyCapabilities.map(([n,title,copy,image,alt,span]) => (
-              <article key={n} className={`${span} group relative min-h-52 overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] p-7 transition-colors hover:border-[#4d8eff]/30 hover:bg-white/[0.04]`}>
-                <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-[#4cd7f6]/[0.06] blur-2xl transition-colors group-hover:bg-[#4cd7f6]/10" />
-                <span className="font-mono text-xs text-[#596074]">{n}</span>
-                <div className="absolute right-5 top-5 size-16 overflow-hidden rounded-2xl border border-white/[0.07] bg-[#07090d] shadow-[0_0_22px_rgba(77,142,255,0.08)]">
-                  <Image src={image} alt={alt} fill sizes="64px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                </div>
-                <h3 className="mt-10 text-xl font-semibold text-white">{title}</h3>
-                <p className="mt-3 max-w-md text-sm leading-6 text-[#9096a8]">{copy}</p>
-              </article>
-            ))}
+          <div className="mt-12 grid md:grid-cols-6 gap-5">
+            {journeyCapabilities.map(([n,title,copy,image,alt,span]) => {
+              const wide = span === "md:col-span-3";
+              return (
+                <article key={n} className={`${span} group overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.025] transition-colors hover:border-[#4d8eff]/30 hover:bg-white/[0.04] ${wide ? "sm:flex sm:items-center" : ""}`}>
+                  <div className={`relative overflow-hidden bg-[#07090d] ${wide ? "aspect-[4/3] sm:aspect-auto sm:w-52 sm:shrink-0 sm:self-stretch" : "aspect-[4/3]"}`}>
+                    <Image src={image} alt={alt} fill sizes={wide ? "(min-width:640px) 208px, 92vw" : "(min-width:768px) 340px, 92vw"} className="object-cover object-bottom transition-transform duration-700 group-hover:scale-105" />
+                  </div>
+                  <div className="p-7">
+                    <span className="font-mono text-xs text-[#596074]">{n}</span>
+                    <h3 className="mt-3 text-xl font-semibold text-white">{title}</h3>
+                    <p className="mt-3 max-w-md text-sm leading-6 text-[#9096a8]">{copy}</p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -163,13 +179,15 @@ export function RestaurantLanding() {
             </div>
             <div className="grid sm:grid-cols-2 gap-px overflow-hidden rounded-[24px] border border-white/[0.08] bg-white/[0.08]">
               {industries.map(([n,title,copy,image,alt]) => (
-                <article key={n} className="group relative min-h-64 bg-[#101116] p-7 sm:p-8 transition-colors hover:bg-[#141722]">
-                  <span className="font-mono text-xs text-[#596074]">{n}</span>
-                  <div className="absolute right-6 top-6 size-16 overflow-hidden rounded-2xl border border-white/[0.07] bg-[#07090d] shadow-[0_0_22px_rgba(77,142,255,0.08)]">
-                    <Image src={image} alt={alt} fill sizes="64px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                <article key={n} className="group bg-[#101116] transition-colors hover:bg-[#141722]">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-[#07090d]">
+                    <Image src={image} alt={alt} fill sizes="(min-width:640px) 340px, 92vw" className="object-cover object-bottom transition-transform duration-700 group-hover:scale-105" />
                   </div>
-                  <h3 className="mt-12 text-xl font-semibold text-white">{title}</h3>
-                  <p className="mt-4 text-sm leading-6 text-[#9096a8]">{copy}</p>
+                  <div className="p-7 sm:p-8 pt-6 sm:pt-6">
+                    <span className="font-mono text-xs text-[#596074]">{n}</span>
+                    <h3 className="mt-3 text-xl font-semibold text-white">{title}</h3>
+                    <p className="mt-4 text-sm leading-6 text-[#9096a8]">{copy}</p>
+                  </div>
                 </article>
               ))}
             </div>
@@ -178,7 +196,24 @@ export function RestaurantLanding() {
       </section>
 
       <section id="how-it-works" className="bg-[#0d0d0d] border-y border-white/[0.06] py-24 scroll-mt-20">
-        <div className="max-w-[1120px] mx-auto px-6 text-center"><p className="text-xs font-mono uppercase tracking-[.2em] text-[#4cd7f6]">Designed around your restaurant</p><h2 className="mt-4 text-4xl font-bold text-white">Connect. Learn. Improve every shift.</h2><div className="mt-14 grid md:grid-cols-3 gap-4 text-left">{processSteps.map(([title,copy,image,alt],i)=><div key={title} className="group relative rounded-2xl border border-white/[0.08] p-7 transition-colors hover:border-[#4d8eff]/30"><span className="font-mono text-xs text-[#505668]">0{i+1}</span><div className="absolute right-5 top-5 size-16 overflow-hidden rounded-2xl border border-white/[0.07] bg-[#07090d] shadow-[0_0_22px_rgba(77,142,255,0.08)]"><Image src={image} alt={alt} fill sizes="64px" className="object-cover transition-transform duration-500 group-hover:scale-105" /></div><h3 className="mt-14 text-lg font-semibold text-white">{title}</h3><p className="mt-3 text-sm leading-6 text-[#8f95a8]">{copy}</p></div>)}</div></div>
+        <div className="max-w-[1120px] mx-auto px-6 text-center">
+          <p className="text-xs font-mono uppercase tracking-[.2em] text-[#4cd7f6]">Designed around your restaurant</p>
+          <h2 className="mt-4 text-4xl font-bold text-white">Connect. Learn. Improve every shift.</h2>
+          <div className="mt-14 grid md:grid-cols-3 gap-5 text-left">
+            {processSteps.map(([title,copy,image,alt],i)=>(
+              <div key={title} className="group overflow-hidden rounded-2xl border border-white/[0.08] transition-colors hover:border-[#4d8eff]/30">
+                <div className="relative aspect-[4/3] overflow-hidden bg-[#07090d]">
+                  <Image src={image} alt={alt} fill sizes="(min-width:768px) 350px, 92vw" className="object-cover object-bottom transition-transform duration-700 group-hover:scale-105" />
+                </div>
+                <div className="p-7 pt-6">
+                  <span className="font-mono text-xs text-[#505668]">0{i+1}</span>
+                  <h3 className="mt-3 text-lg font-semibold text-white">{title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[#8f95a8]">{copy}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section id="results" className="py-24 scroll-mt-20">
