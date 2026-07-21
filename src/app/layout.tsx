@@ -15,6 +15,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://swiftaiapps.com"),
   title: "SwiftAIApps | AI Agent & Enterprise AI Engineering Company",
   description:
     "We engineer AI agents, enterprise copilots, RAG systems, and workflow automation for organizations that want to operate faster with less manual effort. Production-ready. Ships in weeks.",
@@ -30,18 +31,31 @@ export const metadata: Metadata = {
     "document intelligence",
   ],
   authors: [{ name: "SwiftAIApps" }],
+  icons: {
+    icon: "/brand/swiftaiapps-mark.png",
+    apple: "/brand/swiftaiapps-mark.png",
+  },
   openGraph: {
     title: "SwiftAIApps | AI Agent & Enterprise AI Engineering Company",
     description:
       "We engineer AI agents, enterprise copilots, and intelligent workflow systems that help organizations automate operations and move faster.",
     type: "website",
     siteName: "SwiftAIApps",
+    images: [
+      {
+        url: "/brand/swiftaiapps-social-banner.jpg",
+        width: 1200,
+        height: 630,
+        alt: "SwiftAIApps — AI agents that think, decide, and get work done",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "SwiftAIApps | AI Agent & Enterprise AI Engineering Company",
     description:
       "We engineer AI agents, enterprise copilots, and intelligent workflow systems that help organizations automate operations and move faster.",
+    images: ["/brand/swiftaiapps-social-banner.jpg"],
   },
   robots: { index: true, follow: true },
 };

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -63,8 +64,9 @@ export function Navbar() {
       >
         <nav className="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="text-[22px] font-extrabold grad-text tracking-tight shrink-0">
-            SwiftAIApps
+          <Link href="/" aria-label="SwiftAIApps home" className="flex items-center gap-2 text-[22px] font-extrabold grad-text tracking-tight shrink-0">
+            <Image src="/brand/swiftaiapps-mark.png" alt="" width={32} height={32} priority className="size-8 rounded-lg" />
+            <span>SwiftAIApps</span>
           </Link>
 
           {/* Center: page switcher tabs + nav links */}

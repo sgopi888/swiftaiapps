@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const links = [
   { label: "Privacy Policy", href: "/privacy" },
@@ -12,7 +13,10 @@ export function Footer() {
     <footer className="border-t border-white/[0.06] bg-[#0A0A0A] py-12">
       <div className="max-w-[1280px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="text-center md:text-left">
-          <span className="text-xl font-extrabold grad-text">SwiftAIApps</span>
+          <Link href="/" aria-label="SwiftAIApps home" className="inline-flex items-center gap-2">
+            <Image src="/brand/swiftaiapps-mark.png" alt="" width={36} height={36} className="size-9 rounded-lg" />
+            <span className="text-xl font-extrabold grad-text">SwiftAIApps</span>
+          </Link>
           <p className="text-xs text-[#8c909f] mt-1 font-mono">
             © 2026 SwiftAIApps. AI Engineering for the Modern Enterprise.
           </p>
