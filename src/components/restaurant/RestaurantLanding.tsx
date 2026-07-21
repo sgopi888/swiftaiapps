@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { DISCOVERY_CALL_URL } from "@/lib/contact";
 import { VoiceAgentDemo } from "@/components/restaurant/VoiceAgentDemo";
+import { DashboardDemo } from "@/components/restaurant/DashboardDemo";
 
 const capabilities = [
   {
@@ -140,6 +141,8 @@ export function RestaurantLanding() {
           </div>
         </div>
       </section>
+
+      <DashboardDemo />
 
       <section id="use-cases" className="relative overflow-hidden border-y border-white/[0.06] bg-[#0d0d0d] py-24 scroll-mt-20">
         <div className="absolute left-1/2 top-0 h-72 w-[720px] -translate-x-1/2 rounded-full bg-[#4d8eff]/[0.07] blur-3xl" />
