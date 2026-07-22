@@ -12,9 +12,9 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
  * reads everything from here.
  */
 const demo = {
-  src: "/videos/restaurant-voice-agent-demo.mp4",
-  poster: "/images/restaurant-voice-agent-poster.jpg",
-  width: 916,
+  src: "/videos/heritage-voice-agent_2026-07-22_09-10-08.mp4",
+  poster: "/images/heritage-voice-agent-poster.jpg",
+  width: 1080,
   height: 1920,
   alt: "Recording of an AI voice agent answering a restaurant's phone and taking a pickup order",
   beats: [
