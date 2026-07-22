@@ -7,7 +7,7 @@ import { BarChart3, MessageSquareMore, Play, ShoppingBag } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
 const dashboardDemo = {
-  src: "/videos/restaurant-dashboard-demo.mp4",
+  src: "/videos/heritage-dashboard-presentation.mp4",
   poster: "/images/restaurant-dashboard-poster.jpg",
   alt: "Restaurant AI dashboard showing live calls, messages, orders, customer activity, and analytics",
   highlights: [
